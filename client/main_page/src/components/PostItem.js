@@ -18,7 +18,7 @@ const PostItem = (props) => {
               <p
                 style={{
                   fontSize: "24px",
-                  marginBottom: "-1.5rem",
+                  marginBottom: "-.3rem",
                   marginLeft: "-0rem",
                 }}
                 className="card-title"
@@ -75,6 +75,68 @@ const PostItem = (props) => {
                 <b>No. of participants: </b>
                 {post.participants}
               </p>
+
+              <p
+                style={{
+                  fontSize: "18px",
+                  marginTop: "1rem",
+                  marginLeft: "-0rem",
+                }}
+                className="card-text"
+              >
+                <b>Organizer: </b>
+                {post.organizer}
+              </p>
+              
+              <p
+                style={{
+                  fontSize: "18px",
+                  marginTop: "1rem",
+                  marginLeft: "-0rem",
+                }}
+                className="card-text"
+              >
+                <b>Event Start Date: </b>
+                {post.startdate}
+              </p>
+              <p
+                style={{
+                  fontSize: "18px",
+                  marginTop: "1rem",
+                  marginLeft: "-0rem",
+                }}
+                className="card-text"
+              >
+                <b>Event End Date: </b>
+                {post.enddate}
+              </p>
+              
+
+
+
+
+
+
+
+
+              <p
+                style={{
+                  fontSize: "18px",
+                  marginTop: "1rem",
+                  marginLeft: "-0rem",
+                }}
+                className="card-text"
+              >
+                <b> Event Time: </b>
+                {post.starttime}-{post.endtime}
+              </p>
+
+
+
+
+
+
+
               <p
                 style={{
                   fontSize: "18px",
@@ -94,7 +156,7 @@ const PostItem = (props) => {
                 }}
                 className="card-text"
               >
-                <small
+                {/* <small
                   style={{
                     fontSize: "12px",
                     marginTop: "1rem",
@@ -104,7 +166,7 @@ const PostItem = (props) => {
                 >
                   By <b>{post.organizer ? post.organizer : "Unknown"}</b>
                   &nbsp;on <b>{new Date(post.date).toGMTString()}</b>
-                </small>
+                </small> */}
               </p>
             </div>
             <div>

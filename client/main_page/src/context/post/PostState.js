@@ -99,7 +99,11 @@ const PostState = (props) => {
     instructors,
     organizer,
     description,
-    imageUrl
+    imageUrl,
+    startdate,
+    enddate,
+    starttime,
+    endtime
   ) => {
     //API call
     const response = await fetch(`${host}/events/new`, {
@@ -115,6 +119,10 @@ const PostState = (props) => {
         organizer,
         description,
         imageUrl,
+        startdate,
+        enddate,
+        starttime,
+        endtime
       }),
     });
 

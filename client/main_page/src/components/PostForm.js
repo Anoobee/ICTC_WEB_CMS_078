@@ -16,6 +16,10 @@ export default function PostForm(props) {
     organizer: "",
     description: "",
     imageUrl: "",
+    startdate:"",
+    enddate:'',
+    starttime:'',
+    endtime:''
   });
   const dataFromChild = (data) => {
     setImageUrl1(data);
@@ -31,7 +35,11 @@ export default function PostForm(props) {
       post.instructors,
       post.organizer,
       post.description,
-      imageUrl1
+      imageUrl1,
+      post.startdate,
+      post.enddate,
+      post.starttime,
+      post.endtime,
     );
     setPost({
       title: "",
@@ -40,6 +48,11 @@ export default function PostForm(props) {
       instructors: "",
       organizer: "",
       description: "",
+      startdate:"",
+      enddate:'',
+      starttime:'',
+      endtime:'',
+
     });
     props.showAlert("New Post Has been Added", "success");
 
@@ -108,7 +121,7 @@ export default function PostForm(props) {
           <div className="row g-3 mb-2">
             <div className="col">
               <label htmlFor="instructors" className="form-label mx-2">
-                Number Of Instructor
+                Number Of Instructors
               </label>
               <input
                 type="number"
@@ -156,9 +169,138 @@ export default function PostForm(props) {
           </div>
           </div>
 
-          <div className=" mb-2">
+          <div className="row g-3 mb-4">
+            {/* <div className="col" style={{marginTop:"1.7rem"}}>
+            <p style={{marginTop:"2px"}}> Start Time </p>
+            {/* <ImageUploader dataFromChild={dataFromChild} clicked={clicked}/> */}
+            {/* </div> */}
+            <div className="col" style={{marginTop:"1.5rem"}}>
+            <label htmlFor="startdate" className="form-label mx-2"  >
+              Event Start Date
+            </label>
+            <input style={{marginTop:"-1px"}}
+              type="date"
+              onChange={handleChange}
+              minLength={3}
+              required
+              className="form-control"
+              id="startdate"
+              value={post.startdate}
+              name="startdate"
+            />
+          </div>
+        
+            
+          <div className="col" style={{marginTop:"1.5rem"}}>
+            <label htmlFor="enddate" className="form-label mx-2"  >
+              Event End Date
+            </label>
+            <input style={{marginTop:"-1px"}}
+              type="date"
+              onChange={handleChange}
+              minLength={3}
+              required
+              className="form-control"
+              id="enddate"
+              value={post.enddate}
+              name="enddate"
+            />
+          </div>
+          </div>
+
+          {/* <div className="row g-3 mb-3">
+    <div className="col">
+      <label htmlFor="date" className="form-label mx-2">
+      Event Start Date
+      </label>
+      <input
+        type="date"
+        onChange={handleChange}
+        className="form-control"
+        value={post.startdate}
+        id="startdate"
+        name="startdate"
+      />
+    </div>
+  </div>
+  <div className="row g-3 mb-2 my-1.6">
+    <div className="col">
+      <label htmlFor="duration" className="form-label mx-2">
+        Event End Date
+      </label>
+      <input
+        type="date"
+        onChange={handleChange}
+        className="form-control"
+        value={post.enddate}
+        id="enddate"
+        name="enddate"
+      />
+    </div>
+  </div> */}
+
+  <div className="row g-3 mb-5">
+            {/* <div className="col" style={{marginTop:"1.7rem"}}>
+            <p style={{marginTop:"2px"}}> Start Time </p>
+            {/* <ImageUploader dataFromChild={dataFromChild} clicked={clicked}/> */}
+            {/* </div> */}
+            <div className="col" style={{marginTop:"1.5rem"}}>
+            <label htmlFor="starttime" className="form-label mx-2"  >
+              Start Time
+            </label>
+            <input style={{marginTop:"-1px"}}
+              type="time"
+              onChange={handleChange}
+              minLength={3}
+              required
+              className="form-control"
+              id="starttime"
+              value={post.starttime}
+              name="starttime"
+            />
+          </div>
+        
+            
+          <div className="col" style={{marginTop:"1.5rem"}}>
+            <label htmlFor="endtime" className="form-label mx-2"  >
+              End Time
+            </label>
+            <input style={{marginTop:"-1px"}}
+              type="time"
+              onChange={handleChange}
+              minLength={3}
+              required
+              className="form-control"
+              id="endtime"
+              value={post.endtime}
+              name="endtime"
+            />
+          </div>
+          </div>
+
+{/*   
+  <div className="row g-3 mb-2 my-3">
+            <div className="col">
+              <label htmlFor="timeRange" className="form-label mx-2">
+              
+              </label>
+              <input
+                type="time"
+                
+                onChange={handleChange}
+                className="form-control"
+                value={post.timeRange}
+                id="timeRange"
+                name="timeRange"
+                placeholder="Start Time - End Time (e.g., 10:00 AM - 2:00 PM)"
+              />
+            </div>
+          </div> */}
+  
+
+          <div className=" mb-2 my-4">
             <label htmlFor="description" className="form-label mx-2">
-              Description
+              Description(Min length:5)
             </label>
             <textarea
               className="form-control"

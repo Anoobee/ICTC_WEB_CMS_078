@@ -27,19 +27,28 @@ const DetailEvents = () => {
             style={{ display: "flex", justifyContent: "space-around"  , marginTop:"4rem",paddingLeft:"3rem", paddingTop:"3rem",paddingBottom:"3rem"}}
           >
             <div><img src={post.imageUrl} alt={post.title} style={{height:"500px", width:"530px"}}/></div>
-            <div ><p className="ge-title" style={{marginBottom:"1rem",fontSize:"35px"}}><b>Title: </b>{post.title}</p>
+            <div ><p className="ge-title" style={{marginBottom:"1rem",fontSize:"35px",fontWeight:"500"}}><b>Title: </b>{post.title}</p>
             <hr></hr>
                 <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>Type: </b>{post.type}</p>
-                <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>No. Of Instructors: </b>{post.instructors}</p>
-                <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>No. Of Participants: </b>{post.participants}</p>
+                <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>No. of Instructors: </b>{post.instructors}</p>
+                <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>No. of Participants: </b>{post.participants}</p>
                 <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>Organizer: </b>{post.organizer}</p>
+                <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>Start Date: </b>{post.startdate}</p>
+                <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>End Date: </b>{post.enddate}</p>
+                {/* <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>Start Time: </b>{post.starttime}</p>
+                <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>End Time: </b>{post.endtime}</p> */}
+                {/* <p className="ge-title" style={{marginBottom:"1rem",fontSize:"18px"}}><b>Event Time: </b>{post.endtime}</p> */}
+                <p className="ge-title" style={{ marginBottom: "1rem", fontSize: "18px" }}>
+  <b>Event Time: </b>{post.starttime} - {post.endtime}
+</p>
+
                 <p className="ge-title" style={{fontSize:"18px"}}><b>Description: </b>{post.description}</p>
                 <p className="card-text" style={{fontSize:"18px"}}>
                 
-                  <small className="text-muted" style={{fontSize:"16px"}}>
+                  {/* <small className="text-muted" style={{fontSize:"16px"}}>
                     <b>By </b>{post.organizer ? post.organizer : "Unknown"}
                     &nbsp;<b>on</b> {new Date(post.date).toGMTString()}
-                  </small>
+                  </small> */}
                   </p>
                   <button style={{marginTop:"2rem"}} className="submit" onClick={handlebutton}>Back to Events</button>
                 </div>

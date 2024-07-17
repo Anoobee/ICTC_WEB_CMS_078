@@ -6,7 +6,7 @@ const Events = () => {
   const context = useContext(postContext);
   const { posts, getPosts } = context;
   useEffect(() => {
-  getPosts();
+  getPosts(); 
     // eslint-disable-next-line
   }, []);
   const navigate = useNavigate();
@@ -39,11 +39,11 @@ const Events = () => {
               <div key={event._id} className="ge-item">
                <img onClick={()=>{Redirectdetail(event._id)}} src={event.imageUrl} alt={event.title} style={{height:"300px", width:"300px"}}/>
                 <p className="ge-title" style={{marginBottom:"-1rem",fontSize:"25px"}}><b>{event.title}</b></p>
-                <p className="ge-title" style={{marginBottom:"1rem",fontSize:"14px"}}><b>Type: </b>{event.type}</p>
-                <p className="card-text" style={{fontSize:"12px"}}>
+                {/* <p className="ge-title" style={{marginBottom:"1rem",fontSize:"14px"}}><b>Type: </b>{event.type}</p> */}
+                <p className="card-text" style={{fontSize:"13px",marginTop:'2rem'}}>
                   <small className="text-muted">
-                    <b>By </b>{event.organizer ? event.organizer : "Unknown"}
-                    &nbsp;<b>on</b> {new Date(event.date).toGMTString()}
+                    <b>Organized By </b> <b>{event.organizer ? event.organizer : "Unknown"}</b>
+                    {/* &nbsp;<b>on</b> {new Date(event.date).toGMTString()} */}
                   </small>
                 </p>
               </div>

@@ -22,10 +22,20 @@ const eventSchema = new mongoose.Schema({
   imageUrl: {
     type: String,
   },
-  date:{
-    type:Date,
-    default:Date.now
-}
+  startdate:{
+    type:String,
+    
+},
+  enddate:{
+    type:String,
+  
+},
+starttime:{
+  type:String,
+},
+endtime:{
+  type:String,
+},
 
 });
 

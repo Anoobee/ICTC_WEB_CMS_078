@@ -25,5 +25,8 @@ exports.reservationValidator = [
   check("email").isEmail().withMessage("Must be valid email"),
   check("name").notEmpty().withMessage("Name field must not be empty"),
   check("date").notEmpty().withMessage("Date field must not be empty"),
+  check("startTime").notEmpty().withMessage("Time field must not be empty"),
+  check("endTime").notEmpty().withMessage("Time field must not be empty"),
+
   check("message").notEmpty().withMessage("Message field must not be empty"),
 ];

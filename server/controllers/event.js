@@ -9,7 +9,7 @@ exports.getEvents = async(req, res) => {
 };
 
 exports.createEvent = async (req, res) => {
-  try {
+   try {
     const {
       title,
       type,
@@ -18,6 +18,10 @@ exports.createEvent = async (req, res) => {
       description,
       organizer,
       imageUrl,
+      startdate,
+      enddate,
+      starttime,
+      endtime,
     } = req.body;
     // if there are errors, return bad request and the errors
     // const errors = validationResult(req);
@@ -32,6 +36,10 @@ exports.createEvent = async (req, res) => {
       participants,
       organizer,
       imageUrl,
+      startdate,
+      enddate,
+      starttime,
+      endtime,
     });
     const savedPosts = await posts.save();
 

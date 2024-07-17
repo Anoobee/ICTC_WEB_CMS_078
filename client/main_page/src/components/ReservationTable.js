@@ -43,15 +43,10 @@ const ReservationTable = (props) => {
             <b>Email: </b>
             {reservation.email}
           </p>
-
-          <p style={styles} className="card-text">
-            <b>Message: </b>
-            {reservation.message}
-          </p>
           <p style={styles} className="card-text">
             <small
               style={{
-                fontSize: "12px",
+                fontSize: "16px",
                 marginTop: "-1rem",
                 marginLeft: "-0rem",
               }}
@@ -61,6 +56,37 @@ const ReservationTable = (props) => {
               {reservation.date}
             </small>
           </p>
+          <p style={styles} className="card-text">
+            <small
+              style={{
+                fontSize: "16px",
+                marginTop: "-1rem",
+                marginLeft: "-0rem",
+              }}
+              className="text"
+            >
+              <b>Start Time: </b>
+              {reservation.startTime}
+            </small>
+          </p>
+          <p style={styles} className="card-text">
+            <small
+              style={{
+                fontSize: "16px",
+                marginTop: "-1rem",
+                marginLeft: "-0rem",
+              }}
+              className="text"
+            >
+              <b>End Time: </b>
+              {reservation.endTime}
+            </small>
+          </p>
+          <p style={styles} className="card-text">
+            <b>Message: </b>
+            {reservation.message}
+          </p>
+         
         </div>
       </div>
     </div>

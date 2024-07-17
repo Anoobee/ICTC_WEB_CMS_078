@@ -37,5 +37,5 @@ app.use("/", booked_routes);
 
 app.listen(5000, () => {
   console.log("Running");
-  console.log("admin Running at /admin");
+  console.log("admin Running at 5000");
 });
