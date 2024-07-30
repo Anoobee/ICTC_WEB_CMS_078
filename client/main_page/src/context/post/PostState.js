@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PostContext from "./postContext";
 
 const PostState = (props) => {
-  const host = "http://localhost:5000";
+  const host = "http://localhost:7212";
   const postsInitial = [];
   const servicesInitial = [];
   const contactsInitial = [];
@@ -122,7 +122,7 @@ const PostState = (props) => {
         startdate,
         enddate,
         starttime,
-        endtime
+        endtime,
       }),
     });
 

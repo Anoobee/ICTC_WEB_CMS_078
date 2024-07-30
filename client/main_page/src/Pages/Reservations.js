@@ -6,7 +6,11 @@ import dayjs from "dayjs";
 import postContext from "../context/post/postContext";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider, DatePicker, TimePicker } from "@mui/x-date-pickers";
+import {
+  LocalizationProvider,
+  DatePicker,
+  TimePicker,
+} from "@mui/x-date-pickers";
 
 export default function Reservation() {
   const context = useContext(postContext);
@@ -19,7 +23,7 @@ export default function Reservation() {
     date: "",
     message: "",
     startTime: "",
-    endTime: ""
+    endTime: "",
   });
 
   useEffect(() => {
@@ -36,7 +40,7 @@ export default function Reservation() {
   const reservePost = async (e) => {
     e.preventDefault();
     const { name, email, date, message, startTime, endTime } = reservation;
-  
+
     if (!startTime || !endTime) {
       toast.error("Start Time and End Time must be provided");
       return;
@@ -45,20 +49,20 @@ export default function Reservation() {
       toast.error("End time must be after start time");
       return;
     }
-  
+
     const formattedStartTime = dayjs(startTime).format("HH:mm A");
     const formattedEndTime = dayjs(endTime).format("HH:mm A");
-  
+
     console.log({
       name,
       email,
       message,
       date,
       startTime: formattedStartTime,
-      endTime: formattedEndTime
+      endTime: formattedEndTime,
     });
-  
-    let res = await fetch("http://localhost:5000/reservations/new", {
+
+    let res = await fetch("http://localhost:7212/reservations/new", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -69,13 +73,13 @@ export default function Reservation() {
         message,
         date,
         startTime: formattedStartTime,
-        endTime: formattedEndTime
+        endTime: formattedEndTime,
       }),
     });
-  
+
     let resJson = await res.json();
     console.log(resJson); // Log the response
-  
+
     if (resJson.errors && resJson.errors.length > 0) {
       resJson.errors.forEach((error) => {
         toast.error(error.msg);
@@ -132,7 +136,9 @@ export default function Reservation() {
                         disablePast
                         value={reservation.date}
                         onChange={(date) =>
-                          inputHandler({ target: { name: "date", value: date } })
+                          inputHandler({
+                            target: { name: "date", value: date },
+                          })
                         }
                       />
                     </DemoContainer>
@@ -148,7 +154,9 @@ export default function Reservation() {
                       <TimePicker
                         value={reservation.startTime}
                         onChange={(startTime) =>
-                          inputHandler({ target: { name: "startTime", value: startTime } })
+                          inputHandler({
+                            target: { name: "startTime", value: startTime },
+                          })
                         }
                       />
                     </DemoContainer>
@@ -161,7 +169,9 @@ export default function Reservation() {
                       <TimePicker
                         value={reservation.endTime}
                         onChange={(endTime) =>
-                          inputHandler({ target: { name: "endTime", value: endTime } })
+                          inputHandler({
+                            target: { name: "endTime", value: endTime },
+                          })
                         }
                       />
                     </DemoContainer>

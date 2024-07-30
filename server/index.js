@@ -35,7 +35,7 @@ app.use("/", booked_routes);
 
 //database connecting to mongo db
 
-app.listen(5000, () => {
+app.listen(7212, () => {
   console.log("Running");
-  console.log("admin Running at 5000");
+  console.log("admin Running at 7212");
 });

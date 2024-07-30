@@ -23,7 +23,7 @@ const Login = () => {
     console.log("Verifying");
     e.preventDefault();
     let { username, password } = cred;
-    let res = await fetch("http://localhost:5000/credentials/verify", {
+    let res = await fetch("http://localhost:7212/credentials/verify", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Login = () => {
         className: "toast-message",
       });
 
-      Navigate("/Next", setTimeout(5000));
+      Navigate("/Next", setTimeout(7212));
     } else {
       toast.error("Invalid Credential", {
         className: "toast-message",
