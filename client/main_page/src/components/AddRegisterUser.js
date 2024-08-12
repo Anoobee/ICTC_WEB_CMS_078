@@ -10,16 +10,19 @@ const AddRegisterUser = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:7212/credentials/new", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: credential.username,
-        password: credential.password,
-      }),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/credentials/new`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: credential.username,
+          password: credential.password,
+        }),
+      }
+    );
     const json = await response.json();
     console.log(json);
     if (json.authToken) {

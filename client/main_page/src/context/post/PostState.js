@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PostContext from "./postContext";
 
 const PostState = (props) => {
-  const host = "http://localhost:7212";
+  const host = process.env.REACT_APP_BACKEND_URL;
   const postsInitial = [];
   const servicesInitial = [];
   const contactsInitial = [];

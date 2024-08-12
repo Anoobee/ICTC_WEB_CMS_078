@@ -23,16 +23,19 @@ const Login = () => {
     console.log("Verifying");
     e.preventDefault();
     let { username, password } = cred;
-    let res = await fetch("http://localhost:7212/credentials/verify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
+    let res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/credentials/verify`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      }
+    );
     const json = await res.json();
     console.log(json);
     if (json.success) {

@@ -52,21 +52,22 @@ const team = [
     id: 1,
     name: "Aman Shakya",
     job: "Assistant Professor",
-    image: "http://lict.ioe.edu.np/profile/aman/photo.jpg",
+    image:
+      "https://lh3.googleusercontent.com/XvHQZZs_g2GfL71kWftqtLU7NKTmyIYHYQQYXRrG80KnFiGSfCih9H_LUzxCpd1_yo0ZwrcwXSkl5-dV_IUeGzuDa2CecARGBAAOyKojPSgImn-IP6GLgXPx9O0OKoyIXg=w1280",
   },
   {
     id: 2,
     name: "Sanjeeb Prasad Pandey",
     job: "Assosciate Professor",
     image:
-      "https://lict.ioe.edu.np/profile/sanjeeb/March_31_2021.fld/image002.png",
+      "https://media.licdn.com/dms/image/C5603AQEHnLn8CFWwlw/profile-displayphoto-shrink_400_400/0/1598930796444?e=1729123200&v=beta&t=_7tK9Oz_S0ZaMzNtr1978lCe46kNE5CIBpX5hP_Ari0",
   },
   {
     id: 3,
     name: "Basanta Joshi",
     job: "Assistant Professor",
     image:
-      "https://media.licdn.com/dms/image/C5603AQHnJG1u91tJeQ/profile-displayphoto-shrink_400_400/0/1516342058771?e=1681344000&v=beta&t=mRQl_--8rSxVYooz79u-9Lf6YPqensta7ttW_gwP_cM",
+      "https://media.licdn.com/dms/image/C5603AQHnJG1u91tJeQ/profile-displayphoto-shrink_400_400/0/1516342059232?e=1729123200&v=beta&t=rqgYQ_2UMYCqI1UdkbzfofzCMD45lI1VNr1ZWM5wtUk",
   },
   {
     id: 4,

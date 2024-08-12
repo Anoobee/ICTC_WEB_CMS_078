@@ -62,20 +62,23 @@ export default function Reservation() {
       endTime: formattedEndTime,
     });
 
-    let res = await fetch("http://localhost:7212/reservations/new", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-        date,
-        startTime: formattedStartTime,
-        endTime: formattedEndTime,
-      }),
-    });
+    let res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/reservations/new`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          date,
+          startTime: formattedStartTime,
+          endTime: formattedEndTime,
+        }),
+      }
+    );
 
     let resJson = await res.json();
     console.log(resJson); // Log the response
