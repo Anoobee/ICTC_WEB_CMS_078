@@ -179,6 +179,7 @@ export default function PageContent() {
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <Routes>
                   <Route path="/post" element={<Post />} />
+
                   <Route path="/services" element={<Services />} />
                   <Route path="/reservation" element={<Reservation />} />
                   <Route path="/contact" element={<Contact />} />
@@ -188,6 +189,10 @@ export default function PageContent() {
 
                   <Route
                     path="/postform"
+                    element={<PostForm showAlert={showAlert} />}
+                  />
+                  <Route
+                    path="/postform/:id"
                     element={<PostForm showAlert={showAlert} />}
                   />
                   <Route

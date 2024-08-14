@@ -1,15 +1,27 @@
 const Event = require("../models/Event");
 
-exports.getEvents = async(req, res) => {
+exports.getEvents = async (req, res) => {
   Event.find().then((events) => {
-    res.status(200).json({
+    return res.status(200).json({
       events,
     });
   });
 };
 
+exports.getEvent = async (req, res) => {
+  const id = req.params.id;
+  if (!id) {
+    return res.status(400).json({ message: "id must be provided" });
+  }
+  Event.findById(id).then((event) => {
+    return res.status(200).json({
+      event,
+    });
+  });
+};
+
 exports.createEvent = async (req, res) => {
-   try {
+  try {
     const {
       title,
       type,
@@ -43,7 +55,7 @@ exports.createEvent = async (req, res) => {
     });
     const savedPosts = await posts.save();
 
-    res.json(savedPosts);
+    return res.json(savedPosts);
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server error occured");
@@ -67,10 +79,14 @@ exports.deleteEvent = async (req, res) => {
 exports.updateEvent = async (req, res) => {
   try {
     let event = Event.findById(req.params.id);
+    const data = req.body;
     if (!event) {
       res.status(404).send("No service");
     } else {
-      event = await Event.findByIdAndUpdate(req.params.id);
+      const updatedEvent = await Event.findByIdAndUpdate(req.params.id, data);
+      res
+        .status(201)
+        .json({ message: "event updated successfully", event: updatedEvent });
     }
   } catch (err) {
     res.status(500).send("Internal server error");

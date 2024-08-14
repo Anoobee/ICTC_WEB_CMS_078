@@ -1,11 +1,18 @@
 import React, { useContext } from "react";
 import postContext from "../context/post/postContext";
+import { useNavigate } from "react-router-dom";
+import { HiOutlinePencil } from "react-icons/hi";
 
 const PostItem = (props) => {
   const context = useContext(postContext);
   const { deletePost } = context;
-
   const { post } = props;
+  const navigate = useNavigate();
+
+  const handleEdit = (id) => {
+    console.log(id);
+    navigate(`/admin/postform/${id}`);
+  };
   return (
     <div className="container">
       <div className="card my-3">
@@ -26,14 +33,22 @@ const PostItem = (props) => {
                 <b>Event Title:</b> {post.title}
               </p>
             </div>
-            <div>
-              <i
+            <div style={{ display: "flex", gap: "20px" }}>
+              <div
+                onClick={() => handleEdit(post._id)}
                 style={{ cursor: "pointer" }}
-                className="fa fa-solid fa-trash mx-2"
-                onClick={() => {
-                  deletePost(post._id);
-                }}
-              ></i>
+              >
+                <HiOutlinePencil size={20} />
+              </div>
+              <div>
+                <i
+                  style={{ cursor: "pointer" }}
+                  className="fa fa-solid fa-trash mr-2"
+                  onClick={() => {
+                    deletePost(post._id);
+                  }}
+                ></i>
+              </div>
             </div>
           </div>
           <div
@@ -87,7 +102,7 @@ const PostItem = (props) => {
                 <b>Organizer: </b>
                 {post.organizer}
               </p>
-              
+
               <p
                 style={{
                   fontSize: "18px",
@@ -110,14 +125,6 @@ const PostItem = (props) => {
                 <b>Event End Date: </b>
                 {post.enddate}
               </p>
-              
-
-
-
-
-
-
-
 
               <p
                 style={{
@@ -130,12 +137,6 @@ const PostItem = (props) => {
                 <b> Event Time: </b>
                 {post.starttime}-{post.endtime}
               </p>
-
-
-
-
-
-
 
               <p
                 style={{

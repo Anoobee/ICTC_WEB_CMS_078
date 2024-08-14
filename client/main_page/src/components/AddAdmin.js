@@ -13,7 +13,7 @@ const AddAdmin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/users/signin`,
+      `${process.env.REACT_APP_BACKEND_URL}users/signin`,
       {
         method: "POST",
         headers: {

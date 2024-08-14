@@ -1,46 +1,97 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import postContext from "../context/post/postContext";
 import ImageUploader from "./ImageUrl";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function PostForm(props) {
+  const { id } = useParams();
+  console.log(id);
+  const navigate = useNavigate();
+
+  // const [postData, setPostData] = useState([]);
   const [imageUrl1, setImageUrl1] = useState("");
   const context = useContext(postContext);
-  const { addPost } = context;
-  const[clicked,setClicked]=useState(false);
+  const { post: postData, editPost, getPost, addPost } = context;
+  const [clicked, setClicked] = useState(false);
 
   const [post, setPost] = useState({
-    title: "",
-    type: "",
-    participants: "",
-    instructors: "",
-    organizer: "",
-    description: "",
-    imageUrl: "",
-    startdate:"",
-    enddate:'',
-    starttime:'',
-    endtime:''
+    title: postData.title || "",
+    type: postData.type || "",
+    participants: postData.participants || "",
+    instructors: postData.instructors || "",
+    organizer: postData.organizer || "",
+    description: postData.description || "",
+    imageUrl: postData.imageUrl || "",
+    startdate: postData.startdate || "",
+    enddate: postData.enddate || "",
+    starttime: postData.starttime || "",
+    endtime: postData.endtime || "",
   });
   const dataFromChild = (data) => {
     setImageUrl1(data);
   };
 
+  useEffect(() => {
+    if (id) {
+      getPost(id);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (postData) {
+      setPost(postData);
+    }
+  }, [postData]);
+
   const handleClick = (e) => {
     setClicked(true);
     e.preventDefault();
-    addPost(
-      post.title,
-      post.type,
-      post.participants,
-      post.instructors,
-      post.organizer,
-      post.description,
-      imageUrl1,
-      post.startdate,
-      post.enddate,
-      post.starttime,
-      post.endtime,
-    );
+    if (!id) {
+      addPost(
+        post.title,
+        post.type,
+        post.participants,
+        post.instructors,
+        post.organizer,
+        post.description,
+        imageUrl1,
+        post.startdate,
+        post.enddate,
+        post.starttime,
+        post.endtime
+      );
+    } else {
+      editPost(
+        id,
+        post.title,
+        post.type,
+        post.participants,
+        post.instructors,
+        post.organizer,
+        post.description,
+        imageUrl1,
+        post.startdate,
+        post.enddate,
+        post.starttime,
+        post.endtime
+      );
+
+      setPost({
+        title: "",
+        type: "",
+        participants: "",
+        instructors: "",
+        organizer: "",
+        description: "",
+        startdate: "",
+        enddate: "",
+        starttime: "",
+        endtime: "",
+      });
+
+      navigate("/admin/post");
+    }
+
     setPost({
       title: "",
       type: "",
@@ -48,20 +99,19 @@ export default function PostForm(props) {
       instructors: "",
       organizer: "",
       description: "",
-      startdate:"",
-      enddate:'',
-      starttime:'',
-      endtime:'',
-
+      startdate: "",
+      enddate: "",
+      starttime: "",
+      endtime: "",
     });
     props.showAlert("New Post Has been Added", "success");
-
   };
 
   const handleChange = (e) => {
     setClicked(false);
     setPost({ ...post, [e.target.name]: e.target.value });
   };
+
   return (
     <div className="bg-white container rounded">
       <div className="mt-3 container">
@@ -147,26 +197,27 @@ export default function PostForm(props) {
             </div>
           </div>
           <div className="row g-3 mb-2">
-            <div className="col" style={{marginTop:"1.7rem"}}>
-            <p style={{marginTop:"2px"}}> Upload an image </p>
-            <ImageUploader dataFromChild={dataFromChild} clicked={clicked}/>
+            <div className="col" style={{ marginTop: "1.7rem" }}>
+              <p style={{ marginTop: "2px" }}> Upload an image </p>
+              <ImageUploader dataFromChild={dataFromChild} clicked={clicked} />
             </div>
-            
-          <div className="col" style={{marginTop:"1.5rem"}}>
-            <label htmlFor="organizer" className="form-label mx-2"  >
-              Organizer
-            </label>
-            <input style={{marginTop:"-1px"}}
-              type="text"
-              onChange={handleChange}
-              minLength={3}
-              required
-              className="form-control"
-              id="organizer"
-              value={post.organizer}
-              name="organizer"
-            />
-          </div>
+
+            <div className="col" style={{ marginTop: "1.5rem" }}>
+              <label htmlFor="organizer" className="form-label mx-2">
+                Organizer
+              </label>
+              <input
+                style={{ marginTop: "-1px" }}
+                type="text"
+                onChange={handleChange}
+                minLength={3}
+                required
+                className="form-control"
+                id="organizer"
+                value={post.organizer}
+                name="organizer"
+              />
+            </div>
           </div>
 
           <div className="row g-3 mb-4">
@@ -174,38 +225,39 @@ export default function PostForm(props) {
             <p style={{marginTop:"2px"}}> Start Time </p>
             {/* <ImageUploader dataFromChild={dataFromChild} clicked={clicked}/> */}
             {/* </div> */}
-            <div className="col" style={{marginTop:"1.5rem"}}>
-            <label htmlFor="startdate" className="form-label mx-2"  >
-              Event Start Date
-            </label>
-            <input style={{marginTop:"-1px"}}
-              type="date"
-              onChange={handleChange}
-              minLength={3}
-              required
-              className="form-control"
-              id="startdate"
-              value={post.startdate}
-              name="startdate"
-            />
-          </div>
-        
-            
-          <div className="col" style={{marginTop:"1.5rem"}}>
-            <label htmlFor="enddate" className="form-label mx-2"  >
-              Event End Date
-            </label>
-            <input style={{marginTop:"-1px"}}
-              type="date"
-              onChange={handleChange}
-              minLength={3}
-              required
-              className="form-control"
-              id="enddate"
-              value={post.enddate}
-              name="enddate"
-            />
-          </div>
+            <div className="col" style={{ marginTop: "1.5rem" }}>
+              <label htmlFor="startdate" className="form-label mx-2">
+                Event Start Date
+              </label>
+              <input
+                style={{ marginTop: "-1px" }}
+                type="date"
+                onChange={handleChange}
+                minLength={3}
+                required
+                className="form-control"
+                id="startdate"
+                value={post.startdate}
+                name="startdate"
+              />
+            </div>
+
+            <div className="col" style={{ marginTop: "1.5rem" }}>
+              <label htmlFor="enddate" className="form-label mx-2">
+                Event End Date
+              </label>
+              <input
+                style={{ marginTop: "-1px" }}
+                type="date"
+                onChange={handleChange}
+                minLength={3}
+                required
+                className="form-control"
+                id="enddate"
+                value={post.enddate}
+                name="enddate"
+              />
+            </div>
           </div>
 
           {/* <div className="row g-3 mb-3">
@@ -239,46 +291,47 @@ export default function PostForm(props) {
     </div>
   </div> */}
 
-  <div className="row g-3 mb-5">
+          <div className="row g-3 mb-5">
             {/* <div className="col" style={{marginTop:"1.7rem"}}>
             <p style={{marginTop:"2px"}}> Start Time </p>
             {/* <ImageUploader dataFromChild={dataFromChild} clicked={clicked}/> */}
             {/* </div> */}
-            <div className="col" style={{marginTop:"1.5rem"}}>
-            <label htmlFor="starttime" className="form-label mx-2"  >
-              Start Time
-            </label>
-            <input style={{marginTop:"-1px"}}
-              type="time"
-              onChange={handleChange}
-              minLength={3}
-              required
-              className="form-control"
-              id="starttime"
-              value={post.starttime}
-              name="starttime"
-            />
-          </div>
-        
-            
-          <div className="col" style={{marginTop:"1.5rem"}}>
-            <label htmlFor="endtime" className="form-label mx-2"  >
-              End Time
-            </label>
-            <input style={{marginTop:"-1px"}}
-              type="time"
-              onChange={handleChange}
-              minLength={3}
-              required
-              className="form-control"
-              id="endtime"
-              value={post.endtime}
-              name="endtime"
-            />
-          </div>
+            <div className="col" style={{ marginTop: "1.5rem" }}>
+              <label htmlFor="starttime" className="form-label mx-2">
+                Start Time
+              </label>
+              <input
+                style={{ marginTop: "-1px" }}
+                type="time"
+                onChange={handleChange}
+                minLength={3}
+                required
+                className="form-control"
+                id="starttime"
+                value={post.starttime}
+                name="starttime"
+              />
+            </div>
+
+            <div className="col" style={{ marginTop: "1.5rem" }}>
+              <label htmlFor="endtime" className="form-label mx-2">
+                End Time
+              </label>
+              <input
+                style={{ marginTop: "-1px" }}
+                type="time"
+                onChange={handleChange}
+                minLength={3}
+                required
+                className="form-control"
+                id="endtime"
+                value={post.endtime}
+                name="endtime"
+              />
+            </div>
           </div>
 
-{/*   
+          {/*   
   <div className="row g-3 mb-2 my-3">
             <div className="col">
               <label htmlFor="timeRange" className="form-label mx-2">
@@ -296,7 +349,6 @@ export default function PostForm(props) {
               />
             </div>
           </div> */}
-  
 
           <div className=" mb-2 my-4">
             <label htmlFor="description" className="form-label mx-2">
@@ -313,7 +365,6 @@ export default function PostForm(props) {
               rows="3"
             ></textarea>
           </div>
-          
 
           <button
             style={{
@@ -321,7 +372,7 @@ export default function PostForm(props) {
               borderRadius: "10px",
               cursor: "pointer",
             }}
-            disabled={post.title.length < 3 || post.description.length < 5}
+            disabled={post.title?.length < 3 || post.description?.length < 5}
             className="btn btn-primary mt-2"
             onClick={handleClick}
             type="submit"

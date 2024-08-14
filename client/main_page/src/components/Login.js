@@ -3,8 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SideBar from "./SideBar";
 
-import env from "react-dotenv";
-
 const Login = () => {
   const [credential, setCredential] = useState({ email: "", password: "" });
   let navigate = useNavigate();

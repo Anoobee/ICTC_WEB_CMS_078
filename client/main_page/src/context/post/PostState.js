@@ -3,12 +3,14 @@ import PostContext from "./postContext";
 
 const PostState = (props) => {
   const host = process.env.REACT_APP_BACKEND_URL;
+  const postInitial = [];
   const postsInitial = [];
   const servicesInitial = [];
   const contactsInitial = [];
   const reservationsInitial = [];
 
   const [posts, setPosts] = useState(postsInitial);
+  const [post, setPost] = useState(postInitial);
   const [services, setServices] = useState(servicesInitial);
   const [contacts, setContacts] = useState(contactsInitial);
   const [reservations, setReservations] = useState(reservationsInitial);
@@ -29,6 +31,22 @@ const PostState = (props) => {
     console.log(json);
     setPosts(json.events);
   };
+
+  const getPost = async (id) => {
+    console.log(id);
+    //API call
+    setLoading(true);
+    const response = await fetch(`${host}/event/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    setLoading(false);
+    setPost(json.event);
+  };
+
   //get reserveds/booked
   const getBookedDates = async () => {
     //API call
@@ -286,24 +304,34 @@ const PostState = (props) => {
     id,
     title,
     type,
-    instructors,
     participants,
+    instructors,
     organizer,
-    description
+    description,
+    imageUrl,
+    startdate,
+    enddate,
+    starttime,
+    endtime
   ) => {
     //API call
     const response = await fetch(`${host}/events/update/${id}`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         title,
         type,
-        instructors,
         participants,
+        instructors,
         organizer,
         description,
+        imageUrl,
+        startdate,
+        enddate,
+        starttime,
+        endtime,
       }),
     });
     const json = response.json();
@@ -327,12 +355,14 @@ const PostState = (props) => {
     <PostContext.Provider
       value={{
         loading,
+        post,
         posts,
         services,
         contacts,
         reservations,
         bookings,
         setContacts,
+        setPost,
         setPosts,
         setServices,
         addPost,
@@ -343,6 +373,7 @@ const PostState = (props) => {
         deleteContact,
         deleteReservation,
         editPost,
+        getPost,
         getPosts,
         getServices,
         getContacts,
